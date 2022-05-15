@@ -1,7 +1,7 @@
 ﻿$folderloc = "x"
 $temploc = "x"
 
-Get-ChildItem $folderloc | Sort-Object Length | ForEach-Object {
+Get-ChildItem $folderloc -Recurse | Where-Object {$_.Length -gt 10GB} | Sort-Object Length | ForEach-Object {
 if (-not($_ -like '*2160*')){
 if (-not($_ -like '*.bak')){
 Add-Content -Path ($temploc + '\BakupLog.Log') -Value $_.FullName
